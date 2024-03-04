@@ -51,14 +51,7 @@ class GifHomeViewModel @Inject constructor(
                     val gifsResult = getSearchGifUseCase(search)
                     _state.emit(
                         _state.value.copy(
-                            searchGifs = gifsResult.map {
-                                UIGifHomeModel(
-                                    url = it.url,
-                                    title = it.title,
-                                    link = it.link,
-                                    rating = it.rating
-                                )
-                            },
+                            searchGifs = gifsResult.map(UIGifHomeModel::fromGif),
                             searchText = search
                         )
                     )
@@ -77,12 +70,7 @@ class GifHomeViewModel @Inject constructor(
                 val gifResult = getRandomGifUseCase()
                 _state.emit(
                     _state.value.copy(
-                        gif = UIGifHomeModel(
-                            url = gifResult.url,
-                            title = gifResult.title,
-                            link = gifResult.link,
-                            rating = gifResult.rating
-                        ),
+                        gif = UIGifHomeModel.fromGif(gifResult),
                         searchGifs = listOf(),
                         searchText = ""
                     )

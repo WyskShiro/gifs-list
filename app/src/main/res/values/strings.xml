@@ -2,4 +2,6 @@
     <string name="app_name">Giphy</string>
     <string name="random_gif">Random selected GIF:</string>
     <string name="search_gif">Search results:</string>
+    <string name="title_label_name">Name:</string>
+    <string name="link_label_name">Link:</string>
 </resources>

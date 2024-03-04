@@ -29,15 +29,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/titleLabelTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:text="@string/title_label_name"
         android:ellipsize="end"
-        app:layout_constraintEnd_toStartOf="@id/ratingTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/randomGifImageView" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleLabelTextView" />
+
+    <TextView
+        android:id="@+id/linkLabelTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/link_label_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
     <TextView
         android:id="@+id/linkTextView"
@@ -45,20 +68,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toStartOf="@id/ratingTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@id/linkLabelTextView" />
 
     <TextView
         android:id="@+id/ratingTextView"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:background="@drawable/circle_shape"
-        android:backgroundTint="#AAAAAA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:padding="8dp"
+        android:background="@drawable/rating_g_shape"
         android:gravity="center"
-        android:padding="4dp"
-        app:layout_constraintEnd_toEndOf="@id/randomGifImageView"
-        app:layout_constraintTop_toBottomOf="@id/randomGifImageView"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linkTextView"
         tools:text="PGAA" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

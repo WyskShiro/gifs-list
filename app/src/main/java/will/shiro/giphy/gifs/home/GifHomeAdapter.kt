@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
 import will.shiro.giphy.databinding.ItemListGifHomeBinding
 import will.shiro.giphy.gifs.home.models.UIGifHomeModel
 
@@ -19,9 +20,13 @@ class GifHomeAdapter(
     ) : ViewHolder(binding.root) {
 
         fun bind(gif: UIGifHomeModel) {
-            Glide.with(binding.root.context).asGif().load(gif.url).into(
-                binding.randomGifImageView
-            )
+            Glide.with(binding.root.context).asGif().load(gif.url).fitCenter()
+                .override(
+                    Target.SIZE_ORIGINAL,
+                    Target.SIZE_ORIGINAL
+                ).into(
+                    binding.randomGifImageView
+                )
             binding.root.setOnClickListener {
                 onGifClick(gif)
             }

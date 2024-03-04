@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import will.shiro.giphy.R
@@ -106,9 +107,13 @@ class GifHomeFragment : Fragment() {
         val url = gif?.url
         val showRandom = state.searchText.isEmpty()
         if (showRandom) {
-            Glide.with(requireContext()).asGif().load(url).into(
-                gifDetailsView.randomGifImageView
-            )
+            Glide.with(requireContext()).asGif().load(url).fitCenter()
+                .override(
+                    Target.SIZE_ORIGINAL,
+                    Target.SIZE_ORIGINAL
+                ).into(
+                    gifDetailsView.randomGifImageView
+                )
             gifDetailsView.titleTextView.text = gif?.title
             gifDetailsView.linkTextView.text = gif?.link
             gifDetailsView.ratingTextView.text = gif?.rating

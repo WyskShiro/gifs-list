@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import dagger.hilt.android.AndroidEntryPoint
 import will.shiro.giphy.databinding.FragmentGifDetailsBinding
 
@@ -42,9 +43,13 @@ class GifDetailsFragment : Fragment() {
     private fun setUpUI() = binding.apply {
         val gif = args.gif
         val url = gif.url
-        Glide.with(requireContext()).asGif().load(url).into(
-            gifDetailsView.randomGifImageView
-        )
+        Glide.with(requireContext()).asGif().load(url).fitCenter()
+            .override(
+                SIZE_ORIGINAL,
+                SIZE_ORIGINAL
+            ).into(
+                gifDetailsView.randomGifImageView
+            )     // Override the size to match the original dimensions
         gifTitleTextView.text = gif.title
         gifDetailsView.titleTextView.text = gif.title
         gifDetailsView.linkTextView.text = gif.link

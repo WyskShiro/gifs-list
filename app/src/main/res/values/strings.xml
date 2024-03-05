@@ -4,4 +4,9 @@
     <string name="search_gif">Search results:</string>
     <string name="title_label_name">Name:</string>
     <string name="link_label_name">Link:</string>
+    <string name="general_audiences_rating">G - General Audiences - Level 1</string>
+    <string name="pg_parental_guidance_rating">PG - Parental Guidance Suggested - Level 2</string>
+    <string name="pg_13_parents_strongly_rating">PG-13 - Parents Strongly Cautioned - Level 3</string>
+    <string name="r_restricted_rating">R - Restricted - Level 4</string>
+    <string name="not_rated_rating">Not Rated</string>
 </resources>

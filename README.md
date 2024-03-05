@@ -12,8 +12,10 @@
 # Commentaries
 
 - This simple app was developed to apply some different concepts that I've seen throughout my career
-- In the future, I want to also have the same UI, but with Compose
 - I've used the Clean Architecture with MVVM in the presentation layer, since it's the recommended architecture by Google
+
+# TODO
+- In the future, I want to also have the same UI, but with Compose, while also improving the components and UI testing
 
 ## Overview
 

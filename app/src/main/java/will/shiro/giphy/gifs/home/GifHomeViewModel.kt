@@ -1,5 +1,6 @@
 package will.shiro.giphy.gifs.home
 
+import android.content.res.Resources
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class GifHomeViewModel @Inject constructor(
     private val getRandomGifUseCase: GetRandomGifUseCase,
-    private val getSearchGifUseCase: GetSearchGifUseCase
+    private val getSearchGifUseCase: GetSearchGifUseCase,
+    private val resources: Resources
 ) : ViewModel() {
     private val _state = MutableStateFlow(UIGifHome.State())
     private val _sideEffect: MutableStateFlow<UIGifHome.SideEffect> =
@@ -51,7 +53,7 @@ class GifHomeViewModel @Inject constructor(
                     val gifsResult = getSearchGifUseCase(search)
                     _state.emit(
                         _state.value.copy(
-                            searchGifs = gifsResult.map(UIGifHomeModel::fromGif),
+                            searchGifs = gifsResult.map { UIGifHomeModel.fromGif(it, resources) },
                             searchText = search
                         )
                     )
@@ -70,7 +72,10 @@ class GifHomeViewModel @Inject constructor(
                 val gifResult = getRandomGifUseCase()
                 _state.emit(
                     _state.value.copy(
-                        gif = UIGifHomeModel.fromGif(gifResult),
+                        gif = UIGifHomeModel.fromGif(
+                            gifResult,
+                            resources
+                        ),
                         searchGifs = listOf(),
                         searchText = ""
                     )

@@ -1,7 +1,9 @@
 package will.shiro.giphy.gifs.home.models
 
+import android.content.res.Resources
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import will.shiro.giphy.R
 import will.shiro.giphy.domain.models.Gif
 
 @Parcelize
@@ -12,13 +14,13 @@ data class UIGifHomeModel(
     val rating: String
 ) : Parcelable {
     companion object {
-        fun fromGif(gif: Gif): UIGifHomeModel {
+        fun fromGif(gif: Gif, resources: Resources): UIGifHomeModel {
             val rating = when (gif.rating.uppercase()) {
-                "G" -> "G - General Audiences - Level 1"
-                "PG" -> "PG - Parental Guidance Suggested - Level 2"
-                "PG-13" -> "PG-13 - Parents Strongly Cautioned - Level 3"
-                "R" -> "R - Restricted - Level 4"
-                else -> "Not Rated"
+                "G" -> resources.getString(R.string.general_audiences_rating)
+                "PG" -> resources.getString(R.string.pg_parental_guidance_rating)
+                "PG-13" -> resources.getString(R.string.pg_13_parents_strongly_rating)
+                "R" -> resources.getString(R.string.r_restricted_rating)
+                else -> resources.getString(R.string.not_rated_rating)
             }
             return UIGifHomeModel(
                 url = gif.url,

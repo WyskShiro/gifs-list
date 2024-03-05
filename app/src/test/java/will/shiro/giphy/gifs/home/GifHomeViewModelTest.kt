@@ -50,7 +50,7 @@ class GifHomeViewModelTest {
             url = "url",
             title = "title",
             link = "link",
-            rating = "rating"
+            rating = "g"
         )
         viewModel.getRandomGif(false)
         advanceUntilIdle()
@@ -62,7 +62,7 @@ class GifHomeViewModelTest {
                     url = "url",
                     title = "title",
                     link = "link",
-                    rating = "rating"
+                    rating = "G - General Audiences - Level 1"
                 )
             )
         )
@@ -75,7 +75,7 @@ class GifHomeViewModelTest {
                 url = "url",
                 title = "title",
                 link = "link",
-                rating = "rating"
+                rating = "r"
             )
         )
         viewModel.getSearchGifs("asdf")
@@ -90,7 +90,7 @@ class GifHomeViewModelTest {
                         url = "url",
                         title = "title",
                         link = "link",
-                        rating = "rating"
+                        rating = "R - Restricted - Level 4"
                     )
                 )
             )

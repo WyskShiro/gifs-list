@@ -1,21 +1,20 @@
 package will.shiro.giphy.gifs.components
 
 import android.os.Build.VERSION.SDK_INT
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import coil.ImageLoader
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.AsyncImage
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-import will.shiro.giphy.gifs.home.models.UIGifHomeModel
+import will.shiro.giphy.gifs.home.models.UIGifModel
 
 @Composable
-internal fun GifComposable(gif: UIGifHomeModel) {
+internal fun GifComposable(gif: UIGifModel) {
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
         .components {
@@ -26,13 +25,13 @@ internal fun GifComposable(gif: UIGifHomeModel) {
             }
         }
         .build()
-    Image(
-        painter = rememberAsyncImagePainter(
-            ImageRequest.Builder(context).data(data = gif.url).apply(block = {
-                size(Size.ORIGINAL)
-            }).build(),
-            imageLoader = imageLoader
-        ),
+    AsyncImage(
+        model = ImageRequest.Builder(context).data(data = gif.url).apply(block = {
+            size(
+                Size.ORIGINAL
+            )
+        }).build(),
+        imageLoader = imageLoader,
         contentDescription = null,
         modifier = Modifier.fillMaxWidth(),
     )

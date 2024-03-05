@@ -10,15 +10,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import will.shiro.giphy.domain.usecases.GetRandomGifUseCase
-import will.shiro.giphy.domain.usecases.GetSearchGifUseCase
 import will.shiro.giphy.gifs.home.models.UIGifHome
-import will.shiro.giphy.gifs.home.models.UIGifHomeModel
+import will.shiro.giphy.gifs.home.models.UIGifModel
 import javax.inject.Inject
 
 @HiltViewModel
 class GifHomeViewModel @Inject constructor(
     private val getRandomGifUseCase: GetRandomGifUseCase,
-    private val getSearchGifUseCase: GetSearchGifUseCase,
     private val resources: Resources
 ) : ViewModel() {
     private val _state = MutableStateFlow(UIGifHome.State())
@@ -27,42 +25,9 @@ class GifHomeViewModel @Inject constructor(
     val state: StateFlow<UIGifHome.State> = _state
     val sideEffect: StateFlow<UIGifHome.SideEffect> = _sideEffect
     private var randomGifJob: Job? = null
-    private var searchJob: Job? = null
 
-    fun setUp() {
+    init {
         getRandomGif()
-    }
-
-    fun handleSearchText(search: String) {
-        searchJob?.cancel()
-        _state.value.copy(
-            searchText = search
-        )
-        if (search.isNotEmpty()) {
-            randomGifJob?.cancel()
-            getSearchGifs(search)
-        }
-    }
-
-    fun getSearchGifs(search: String) {
-        searchJob = viewModelScope.launch {
-            delay(SEARCH_DEBOUNCE)
-            if (search.length >= MINIMUM_CHARS_TO_SEARCH) {
-                _sideEffect.emit(UIGifHome.SideEffect.Loading(isLoading = true))
-                try {
-                    val gifsResult = getSearchGifUseCase(search)
-                    _state.emit(
-                        _state.value.copy(
-                            searchGifs = gifsResult.map { UIGifHomeModel.fromGif(it, resources) },
-                            searchText = search
-                        )
-                    )
-                } catch (e: Exception) {
-                    // TODO handle errors
-                }
-                _sideEffect.emit(UIGifHome.SideEffect.Loading(isLoading = false))
-            }
-        }
     }
 
     fun getRandomGif(scheduleNewRandomGif: Boolean = true) {
@@ -72,12 +37,10 @@ class GifHomeViewModel @Inject constructor(
                 val gifResult = getRandomGifUseCase()
                 _state.emit(
                     _state.value.copy(
-                        gif = UIGifHomeModel.fromGif(
+                        gif = UIGifModel.fromGif(
                             gifResult,
                             resources
                         ),
-                        searchGifs = listOf(),
-                        searchText = ""
                     )
                 )
             } catch (e: Exception) {
@@ -93,5 +56,3 @@ class GifHomeViewModel @Inject constructor(
 }
 
 const val DELAY_NEW_RANDOM_GIF = 10000L
-const val SEARCH_DEBOUNCE = 500L
-const val MINIMUM_CHARS_TO_SEARCH = 2

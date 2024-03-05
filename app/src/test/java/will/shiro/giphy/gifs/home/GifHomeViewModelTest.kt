@@ -18,7 +18,8 @@ import will.shiro.giphy.domain.models.Gif
 import will.shiro.giphy.domain.usecases.GetRandomGifUseCase
 import will.shiro.giphy.domain.usecases.GetSearchGifUseCase
 import will.shiro.giphy.gifs.home.models.UIGifHome
-import will.shiro.giphy.gifs.home.models.UIGifHomeModel
+import will.shiro.giphy.gifs.home.models.UIGifModel
+import will.shiro.giphy.gifs.search.GifHomeViewModel
 
 @ExperimentalCoroutinesApi
 class GifHomeViewModelTest {
@@ -58,7 +59,7 @@ class GifHomeViewModelTest {
         assertEquals(
             viewModel.state.value,
             UIGifHome.State(
-                gif = UIGifHomeModel(
+                gif = UIGifModel(
                     url = "url",
                     title = "title",
                     link = "link",
@@ -86,7 +87,7 @@ class GifHomeViewModelTest {
             UIGifHome.State(
                 searchText = "asdf",
                 searchGifs = listOf(
-                    UIGifHomeModel(
+                    UIGifModel(
                         url = "url",
                         title = "title",
                         link = "link",

@@ -11,19 +11,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import will.shiro.giphy.theme.BackgroundBlack
+import will.shiro.giphy.theme.IndicatorGreen
 
 @Composable
 internal fun LoadingComposable() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White),
-        contentAlignment = Alignment.Center
+            .background(color = BackgroundBlack),
+        contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp),
-            color = MaterialTheme.colorScheme.secondary,
-            trackColor = MaterialTheme.colorScheme.surfaceVariant,
+            color = IndicatorGreen,
+            trackColor = IndicatorGreen,
         )
     }
 }

@@ -2,9 +2,7 @@ package will.shiro.giphy.gifs.home.models
 
 sealed interface UIGifHome {
     data class State(
-        val gif: UIGifHomeModel? = null,
-        val searchText: String = "",
-        val searchGifs: List<UIGifHomeModel> = listOf(),
+        val gif: UIGifModel? = null,
     ) : UIGifHome
 
     sealed class SideEffect : UIGifHome {

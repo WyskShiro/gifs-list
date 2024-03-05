@@ -25,7 +25,7 @@ internal fun LoadingComposable() {
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp),
             color = IndicatorGreen,
-            trackColor = IndicatorGreen,
+            trackColor = BackgroundBlack,
         )
     }
 }

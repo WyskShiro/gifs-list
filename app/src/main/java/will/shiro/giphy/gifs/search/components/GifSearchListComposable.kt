@@ -12,7 +12,7 @@ import will.shiro.giphy.gifs.home.models.UIGifModel
 @Composable
 internal fun GifSearchListComposable(gifs: List<UIGifModel>, onGifClick: (UIGifModel) -> Unit) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(3)
+        columns = GridCells.Fixed(GRID_COLUMNS)
     ) {
         items(gifs) { gif ->
             GifComposable(
@@ -22,3 +22,5 @@ internal fun GifSearchListComposable(gifs: List<UIGifModel>, onGifClick: (UIGifM
         }
     }
 }
+
+private const val GRID_COLUMNS = 3

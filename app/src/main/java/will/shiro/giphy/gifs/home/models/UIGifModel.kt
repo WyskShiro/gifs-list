@@ -7,14 +7,14 @@ import will.shiro.giphy.R
 import will.shiro.giphy.domain.models.Gif
 
 @Parcelize
-data class UIGifHomeModel(
+data class UIGifModel(
     val url: String,
     val title: String,
     val link: String,
     val rating: String
 ) : Parcelable {
     companion object {
-        fun fromGif(gif: Gif, resources: Resources): UIGifHomeModel {
+        fun fromGif(gif: Gif, resources: Resources): UIGifModel {
             val rating = when (gif.rating.uppercase()) {
                 "G" -> resources.getString(R.string.general_audiences_rating)
                 "PG" -> resources.getString(R.string.pg_parental_guidance_rating)
@@ -22,7 +22,7 @@ data class UIGifHomeModel(
                 "R" -> resources.getString(R.string.r_restricted_rating)
                 else -> resources.getString(R.string.not_rated_rating)
             }
-            return UIGifHomeModel(
+            return UIGifModel(
                 url = gif.url,
                 title = gif.title,
                 link = gif.link,

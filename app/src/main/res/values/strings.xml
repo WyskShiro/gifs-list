@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Giphy</string>
     <string name="random_gif">Random selected GIF:</string>
+    <string name="search">Search</string>
     <string name="search_gif">Search results:</string>
     <string name="title_label_name">Name:</string>
     <string name="link_label_name">Link:</string>
@@ -9,4 +10,5 @@
     <string name="pg_13_parents_strongly_rating">PG-13 - Parents Strongly Cautioned - Level 3</string>
     <string name="r_restricted_rating">R - Restricted - Level 4</string>
     <string name="not_rated_rating">Not Rated</string>
+    <string name="back_button">Back button</string>
 </resources>

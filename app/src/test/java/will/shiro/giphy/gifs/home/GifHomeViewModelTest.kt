@@ -1,7 +1,9 @@
 package will.shiro.giphy.gifs.home
 
+import android.content.res.Resources
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,11 +16,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import will.shiro.giphy.MainCoroutineRule
+import will.shiro.giphy.R
 import will.shiro.giphy.domain.models.Gif
 import will.shiro.giphy.domain.usecases.GetRandomGifUseCase
-import will.shiro.giphy.domain.usecases.GetSearchGifUseCase
 import will.shiro.giphy.gifs.home.models.UIGifHome
-import will.shiro.giphy.gifs.home.models.UIGifHomeModel
+import will.shiro.giphy.gifs.home.models.UIGifModel
 
 @ExperimentalCoroutinesApi
 class GifHomeViewModelTest {
@@ -27,10 +29,10 @@ class GifHomeViewModelTest {
     var mainCoroutineRule = MainCoroutineRule()
 
     @MockK
-    private lateinit var getSearchGifUseCase: GetSearchGifUseCase
+    private lateinit var getRandomGifUseCase: GetRandomGifUseCase
 
     @MockK
-    private lateinit var getRandomGifUseCase: GetRandomGifUseCase
+    private lateinit var resources: Resources
     private lateinit var viewModel: GifHomeViewModel
 
     @Before
@@ -40,7 +42,7 @@ class GifHomeViewModelTest {
         viewModel =
             GifHomeViewModel(
                 getRandomGifUseCase,
-                getSearchGifUseCase
+                resources
             )
     }
 
@@ -52,46 +54,21 @@ class GifHomeViewModelTest {
             link = "link",
             rating = "g"
         )
-        viewModel.getRandomGif(false)
+        every { resources.getString(R.string.general_audiences_rating) } returns "G - General Audiences - Level 1"
+
+        viewModel.scheduleNewRandomGif = false
+        viewModel.getRandomGif()
+
         advanceUntilIdle()
 
         assertEquals(
             viewModel.state.value,
             UIGifHome.State(
-                gif = UIGifHomeModel(
+                gif = UIGifModel(
                     url = "url",
                     title = "title",
                     link = "link",
                     rating = "G - General Audiences - Level 1"
-                )
-            )
-        )
-    }
-
-    @Test
-    fun testGetSearchGifsSuccess() = runTest {
-        coEvery { getSearchGifUseCase("asdf") } returns listOf(
-            Gif(
-                url = "url",
-                title = "title",
-                link = "link",
-                rating = "r"
-            )
-        )
-        viewModel.getSearchGifs("asdf")
-        advanceUntilIdle()
-
-        assertEquals(
-            viewModel.state.value,
-            UIGifHome.State(
-                searchText = "asdf",
-                searchGifs = listOf(
-                    UIGifHomeModel(
-                        url = "url",
-                        title = "title",
-                        link = "link",
-                        rating = "R - Restricted - Level 4"
-                    )
                 )
             )
         )

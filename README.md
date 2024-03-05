@@ -15,13 +15,14 @@
 - I've used the Clean Architecture with MVVM in the presentation layer, since it's the recommended architecture by Google
 
 # TODO
-- In the future, I want to also have the same UI, but with Compose, while also improving the components and UI testing
+- ~~In the future, I want to also have the same UI, but with Compose, while also improving the components and UI testing~~
+- Replaced the XML UI with compose. The XML version is still available in the commit history and here: [xml_version](https://github.com/WyskShiro/gifs-list/tree/feature/layout-version)
 
 ## Overview
 
 Simple app to show gifs from Giphy API
+[new version.webm](https://github.com/WyskShiro/gifs-list/assets/26095521/ea198fbb-cf0b-4584-b43a-336d7dfa84c8)
 
-[Screen_recording_20240304_204630.webm](https://github.com/WyskShiro/gifs-list/assets/26095521/241671e6-722e-4fcf-bf31-44ff827c101b)
 
 ### Screen 1:
 

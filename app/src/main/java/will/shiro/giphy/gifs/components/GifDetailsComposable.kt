@@ -32,11 +32,6 @@ internal fun GifDetailsComposable(gif: UIGifModel) {
         )
         Text(
             color = Color.White,
-            text = stringResource(id = R.string.link_label_name),
-            modifier = Modifier.padding(top = 16.dp)
-        )
-        Text(
-            color = Color.White,
             text = gif.link,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(top = 4.dp)

@@ -10,6 +10,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,9 @@ internal fun GifSearchTextComposable(
         Image(
             painter = painterResource(id = R.drawable.ic_arrow_back_24),
             contentDescription = "Back button",
-            modifier = Modifier.clickable { onBackClick() }
+            modifier = Modifier
+                .clickable { onBackClick() }
+                .testTag(R.drawable.ic_arrow_back_24.toString())
         )
         TextField(
             modifier = Modifier

@@ -21,6 +21,8 @@
 
 Simple app to show gifs from Giphy API
 
+[Screen_recording_20240304_204630.webm](https://github.com/WyskShiro/gifs-list/assets/26095521/241671e6-722e-4fcf-bf31-44ff827c101b)
+
 ### Screen 1:
 
 Screen 1 has the following two functionalities:

@@ -21,8 +21,8 @@
 ## Overview
 
 Simple app to show gifs from Giphy API
+[new version.webm](https://github.com/WyskShiro/gifs-list/assets/26095521/ea198fbb-cf0b-4584-b43a-336d7dfa84c8)
 
-[Screen_recording_20240304_204630.webm](https://github.com/WyskShiro/gifs-list/assets/26095521/241671e6-722e-4fcf-bf31-44ff827c101b)
 
 ### Screen 1:
 

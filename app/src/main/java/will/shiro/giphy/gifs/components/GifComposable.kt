@@ -1,6 +1,7 @@
 package will.shiro.giphy.gifs.components
 
 import android.os.Build.VERSION.SDK_INT
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,17 +15,15 @@ import coil.size.Size
 import will.shiro.giphy.gifs.home.models.UIGifModel
 
 @Composable
-internal fun GifComposable(gif: UIGifModel) {
+internal fun GifComposable(gif: UIGifModel, onGifClick: (UIGifModel) -> Unit = {}) {
     val context = LocalContext.current
-    val imageLoader = ImageLoader.Builder(context)
-        .components {
+    val imageLoader = ImageLoader.Builder(context).components {
             if (SDK_INT >= 28) {
                 add(ImageDecoderDecoder.Factory())
             } else {
                 add(GifDecoder.Factory())
             }
-        }
-        .build()
+        }.build()
     AsyncImage(
         model = ImageRequest.Builder(context).data(data = gif.url).apply(block = {
             size(
@@ -33,6 +32,8 @@ internal fun GifComposable(gif: UIGifModel) {
         }).build(),
         imageLoader = imageLoader,
         contentDescription = null,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onGifClick(gif) },
     )
 }

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import will.shiro.giphy.gifs.components.LoadingComposable
+import will.shiro.giphy.gifs.home.models.UIGifModel
 import will.shiro.giphy.gifs.search.components.GifSearchListComposable
 import will.shiro.giphy.gifs.search.components.GifSearchTextComposable
 import will.shiro.giphy.gifs.search.models.UIGifSearch
@@ -23,6 +24,7 @@ import will.shiro.giphy.theme.BackgroundBlack
 @Composable
 internal fun GifSearchScreen(
     onBackClick: () -> Unit,
+    onGifClick: () -> Unit,
     viewModel: GifSearchViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.state.collectAsStateWithLifecycle()
@@ -36,7 +38,10 @@ internal fun GifSearchScreen(
             sideEffect,
             viewModel::handleSearchText,
             onBackClick
-        )
+        ) {
+            viewModel.saveGifClick(it)
+            onGifClick()
+        }
     }
 }
 
@@ -46,6 +51,7 @@ internal fun GifSearchComposable(
     sideEffect: UIGifSearch.SideEffect,
     onSearchTextChange: (String) -> Unit,
     onBackClick: () -> Unit,
+    onGifClick: (UIGifModel) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -68,7 +74,10 @@ internal fun GifSearchComposable(
             is UIGifSearch.SideEffect.Loading -> if (sideEffect.isLoading) {
                 LoadingComposable()
             } else {
-                GifSearchListComposable(uiState.searchGifs)
+                GifSearchListComposable(
+                    uiState.searchGifs,
+                    onGifClick = onGifClick
+                )
             }
         }
     }

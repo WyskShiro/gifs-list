@@ -9,6 +9,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import will.shiro.giphy.data.repositories.GifRepository
+import will.shiro.giphy.domain.repositories.IGifRepository
 import will.shiro.giphy.domain.usecases.GetSearchGifUseCase
 import will.shiro.giphy.gifs.home.models.UIGifModel
 import will.shiro.giphy.gifs.search.models.UIGifSearch
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class GifSearchViewModel @Inject constructor(
     private val getSearchGifUseCase: GetSearchGifUseCase,
+    private val gifRepository: IGifRepository,
     private val resources: Resources
 ) : ViewModel() {
     private val _state = MutableStateFlow(UIGifSearch.State())
@@ -57,6 +60,10 @@ class GifSearchViewModel @Inject constructor(
                 _sideEffect.emit(UIGifSearch.SideEffect.Loading(isLoading = false))
             }
         }
+    }
+
+    fun saveGifClick(gif: UIGifModel) {
+        gifRepository.setSelected(gif)
     }
 }
 

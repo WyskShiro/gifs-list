@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
+import will.shiro.giphy.gifs.details.GifDetailsScreen
 import will.shiro.giphy.gifs.home.GifHomeScreen
+import will.shiro.giphy.gifs.home.models.UIGifModel
 import will.shiro.giphy.gifs.search.GifSearchScreen
 import will.shiro.giphy.theme.GifsListTheme
 
@@ -26,16 +30,26 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "gifHome") {
+                    NavHost(
+                        navController = navController,
+                        startDestination = "gifHome"
+                    ) {
                         composable("gifHome") {
                             GifHomeScreen(onSearchTextClick = {
                                 navController.navigate("gifSearch")
                             })
                         }
                         composable("gifSearch") {
-                            GifSearchScreen(onBackClick = {
-                                navController.popBackStack()
-                            })
+                            GifSearchScreen(
+                                onBackClick = {
+                                    navController.popBackStack()
+                                },
+                                onGifClick = {
+                                    navController.navigate("gifDetails")
+                                })
+                        }
+                        composable("gifDetails") {
+                            GifDetailsScreen()
                         }
                     }
                 }

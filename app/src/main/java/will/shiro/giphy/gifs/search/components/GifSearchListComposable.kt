@@ -8,12 +8,15 @@ import will.shiro.giphy.gifs.components.GifComposable
 import will.shiro.giphy.gifs.home.models.UIGifModel
 
 @Composable
-internal fun GifSearchListComposable(gifs: List<UIGifModel>) {
+internal fun GifSearchListComposable(gifs: List<UIGifModel>, onGifClick: (UIGifModel) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3)
     ) {
         items(gifs) { gif ->
-            GifComposable(gif = gif)
+            GifComposable(
+                gif = gif,
+                onGifClick = onGifClick
+            )
         }
     }
 }

@@ -1,4 +1,6 @@
 # Gifs list
+- Simple app to show gifs from Giphy API
+- The idea was to just show gifs and have list with search for gifs
 
 # Technologies
  - Kotlin
@@ -7,16 +9,20 @@
  - Coroutines
  - Flow
  - MockK
- - Jetpack Stuff (Fragments, ViewModel, Navigation etc)
+ - Jetpack Compose
 
 # Commentaries
 
 - This simple app was developed to apply some different concepts that I've seen throughout my career
+- Also, previously I did this small app with XML layouts, but I decided to update it with some Compose knowledge that i've acquired
 - I've used the Clean Architecture with MVVM in the presentation layer, since it's the recommended architecture by Google
 
 # TODO
 - ~~In the future, I want to also have the same UI, but with Compose, while also improving the components and UI testing~~
 - Replaced the XML UI with compose. The XML version is still available in the commit history and here: [xml_version](https://github.com/WyskShiro/gifs-list/tree/feature/layout-version)
+- Treat the error cases with appropriate Composables/messages
+- Gradient color for rating text based on the rating
+- My UI testing knowldge for the Composables still is limited, so I want in the future to improve the Composables testing
 
 ## Overview
 

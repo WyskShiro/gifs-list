@@ -57,6 +57,12 @@ android {
     buildFeatures {
         buildConfig = true
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
 }
 
 dependencies {
@@ -85,4 +91,19 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     kapt(libs.moshi.kotlin.codegen)
+
+    implementation(libs.activity.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+    androidTestImplementation(platform(libs.compose.bom))
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+
 }

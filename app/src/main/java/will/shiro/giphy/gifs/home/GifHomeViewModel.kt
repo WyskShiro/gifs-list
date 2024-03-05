@@ -9,6 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.jetbrains.annotations.VisibleForTesting
 import will.shiro.giphy.domain.usecases.GetRandomGifUseCase
 import will.shiro.giphy.gifs.home.models.UIGifHome
 import will.shiro.giphy.gifs.home.models.UIGifModel
@@ -26,11 +27,14 @@ class GifHomeViewModel @Inject constructor(
     val sideEffect: StateFlow<UIGifHome.SideEffect> = _sideEffect
     private var randomGifJob: Job? = null
 
+    @VisibleForTesting
+    var scheduleNewRandomGif = true
+
     init {
         getRandomGif()
     }
 
-    fun getRandomGif(scheduleNewRandomGif: Boolean = true) {
+    fun getRandomGif() {
         randomGifJob = viewModelScope.launch {
             _sideEffect.emit(UIGifHome.SideEffect.Loading(isLoading = true))
             try {

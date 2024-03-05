@@ -20,6 +20,7 @@ import will.shiro.giphy.R
 import will.shiro.giphy.domain.models.Gif
 import will.shiro.giphy.domain.repositories.IGifRepository
 import will.shiro.giphy.domain.usecases.GetSearchGifUseCase
+import will.shiro.giphy.domain.usecases.SetSelectedGifUseCase
 import will.shiro.giphy.gifs.home.models.UIGifModel
 import will.shiro.giphy.gifs.search.models.UIGifSearch
 
@@ -33,7 +34,7 @@ class GifSearchViewModelTest {
     private lateinit var getSearchGifUseCase: GetSearchGifUseCase
 
     @MockK
-    private lateinit var gifRepository: IGifRepository
+    private lateinit var setSelectedGifUseCase: SetSelectedGifUseCase
 
     @MockK
     private lateinit var resources: Resources
@@ -46,7 +47,7 @@ class GifSearchViewModelTest {
         viewModel =
             GifSearchViewModel(
                 getSearchGifUseCase,
-                gifRepository,
+                setSelectedGifUseCase,
                 resources
             )
     }
